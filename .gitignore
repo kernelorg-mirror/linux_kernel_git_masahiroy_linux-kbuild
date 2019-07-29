@@ -46,7 +46,6 @@
 *.xz
 Module.symvers
 modules.builtin
-Symbols.list
 
 #
 # Top-level generic files
@@ -58,6 +57,7 @@ Symbols.list
 /vmlinux.32
 /vmlinux-gdb.py
 /vmlinuz
+/Symbols.list
 /System.map
 /Module.markers
 /modules.builtin.modinfo
