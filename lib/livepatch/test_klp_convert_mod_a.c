@@ -23,3 +23,4 @@ __used static const char *get_homonym_string(void)
 MODULE_LICENSE("GPL");
 MODULE_AUTHOR("Joe Lawrence <joe.lawrence@redhat.com>");
 MODULE_DESCRIPTION("Livepatch test: klp-convert module");
+MODULE_INFO(livepatch, "Y");
