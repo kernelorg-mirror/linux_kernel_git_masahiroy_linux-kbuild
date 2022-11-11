@@ -74,13 +74,10 @@ modules.builtin.modinfo: vmlinux.o FORCE
 # module.builtin
 # ---------------------------------------------------------------------------
 
-# The second line aids cases where multiple modules share the same object.
-
 quiet_cmd_modules_builtin = GEN     $@
       cmd_modules_builtin = \
 	tr '\0' '\n' < $< | \
-	sed -n 's/^[[:alnum:]:_]*\.file=//p' | \
-	tr ' ' '\n' | uniq | sed -e 's:^:kernel/:' -e 's/$$/.ko/' > $@
+	sed -n 's@^[[:alnum:]:_]*\.file=\(.*\)@kernel/\1.ko@p' | uniq > $@
 
 targets += modules.builtin
 modules.builtin: modules.builtin.modinfo FORCE

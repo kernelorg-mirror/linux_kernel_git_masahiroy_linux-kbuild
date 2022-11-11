@@ -106,13 +106,13 @@ endif
 
 # Finds the multi-part object the current object will be linked into.
 # If the object belongs to two or more multi-part objects, list them all.
-modname-multi = $(sort $(foreach m,$(multi-obj-ym),\
+__modname-multi = $(sort $(foreach m,$(multi-obj-ym),\
 		$(if $(filter $*.o, $(call suffix-search, $m, .o, -objs -y -m)),$(m:.o=))))
 
-__modname = $(or $(modname-multi),$(basetarget))
+modname-multi = $(if $(word 2, $(__modname-multi)), $(error $(kbuild-file): $*.o is added to multiple modules: $(__modname-multi)))$(__modname-multi)
 
-modname = $(subst $(space),:,$(__modname))
-modfile = $(addprefix $(obj)/,$(__modname))
+modname = $(or $(modname-multi),$(basetarget))
+modfile = $(addprefix $(obj)/,$(modname))
 
 # target with $(obj)/ and its suffix stripped
 target-stem = $(basename $(patsubst $(obj)/%,%,$@))
