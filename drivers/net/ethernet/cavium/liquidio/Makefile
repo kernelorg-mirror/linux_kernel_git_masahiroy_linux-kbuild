@@ -3,7 +3,9 @@
 # Cavium Liquidio ethernet device driver
 #
 
-common-objs :=	lio_ethtool.o		\
+obj-$(CONFIG_LIQUIDIO_CORE) += liquidio-core.o
+liquidio-core-y := \
+		lio_ethtool.o		\
 		lio_core.o		\
 		request_manager.o	\
 		response_manager.o	\
