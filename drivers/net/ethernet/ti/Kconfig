@@ -17,9 +17,13 @@ config NET_VENDOR_TI
 
 if NET_VENDOR_TI
 
+config TI_DAVINCI_COMMON
+	tristate
+
 config TI_DAVINCI_EMAC
 	tristate "TI DaVinci EMAC Support"
 	depends on ARM && ( ARCH_DAVINCI || ARCH_OMAP3 ) || COMPILE_TEST
+	select TI_DAVINCI_COMMON
 	select TI_DAVINCI_MDIO
 	select PHYLIB
 	select GENERIC_ALLOCATOR
@@ -51,6 +55,7 @@ config TI_CPSW
 	tristate "TI CPSW Switch Support"
 	depends on ARCH_DAVINCI || ARCH_OMAP2PLUS || COMPILE_TEST
 	depends on TI_CPTS || !TI_CPTS
+	select TI_DAVINCI_COMMON
 	select TI_DAVINCI_MDIO
 	select MFD_SYSCON
 	select PAGE_POOL
@@ -112,6 +117,7 @@ config TI_K3_AM65_CPSW_SWITCHDEV
 	bool "TI K3 AM654x/J721E CPSW Switch mode support"
 	depends on TI_K3_AM65_CPSW_NUSS
 	depends on NET_SWITCHDEV
+	select TI_DAVINCI_COMMON
 	help
 	 This enables switchdev support for TI K3 CPSWxG Ethernet
 	 Switch. Enable this driver to support hardware switch support for AM65
